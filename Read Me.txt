@@ -1,0 +1,8 @@
+backend is with .net core + entity framework core 
+need to change connection string + run migrations to set up database
+one table "vehicle" will be created to save and retrieve data automatically.
+
+two basic apis : post and get 
+two basic html page : add and view
+
+apis should run on apis as indicated on the top of html pages
