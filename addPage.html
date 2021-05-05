@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+ crossorigin="anonymous"></script>
+<style>
+
+
+
+.panel-heading{
+text-align:center;
+background-color: skyblue;
+font-size: 24px;
+padding: 15px;
+}
+
+.widthMatch{
+width: 90%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+  margin:0 auto;
+}
+
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+
+</head>
+<body>
+<div class="panel panel-primary">  
+    <div class="panel-heading">  
+      Add Cars Form ( post api at https://localhost:5001/vehicle)
+    </div>  
+    <div class="panel-body"> 
+     
+	 <form id="vehicleForm"  method="POST" action="#">
+	 <table>
+	 <tr>
+	 <td> <label for="fname">Model:</label> </td>
+	  <td> <input class="widthMatch" type="text" id="ModelName" name="ModelName" required="true" > </td>
+	 </tr>
+	 <tr>
+	 <td> <label for="fname">Color:</label> </td>
+	  <td> <input class="widthMatch" type="text" id="Color" name="Color" required="true" > </td>
+	 </tr>
+	 <tr>
+	 <td> <label for="fname">Price:</label> </td>
+	  <td> <input class="widthMatch" type="number" id="Price" name="Price" required="true" > </td>
+	 </tr>
+	 <tr>
+	 <td> <label for="fname">Condition:</label> </td>
+	  <td> <input class="widthMatch" type="text" id="Condition" name="Condition" required="true" > </td>
+	 </tr>
+	 <tr>
+	 <td> <label for="fname">Engine:</label> </td>
+	  <td> <input class="widthMatch" type="number" id="EngineCapacity" name="EngineCapacity" required="true" > </td>
+	 </tr>
+	 
+	 <tr>
+	 <td></td>
+	  <td>  <input type="submit" value="Submit"></td>
+	 </tr>
+        
+       
+	</form>
+
+
+</div>
+ <div class="panel-footer">  
+     <a href="./gridPage.html" >View car data</a> 
+    </div>	
+
+<script type="text/javascript" charset="utf-8">
+
+$("#vehicleForm").submit(function(event) {
+  event.preventDefault();
+  var $form = $(this);
+ var url= "https://localhost:5001/vehicle";
+  var posting = $.post(url, {
+    ModelName: $('#ModelName').val(),
+    Color: $('#Color').val(),
+	Price: $('#Price').val(),
+	Condition: $('#Condition').val(),
+	EngineCapacity: $('#EngineCapacity').val()
+  });
+
+  /* Alerts the results */
+  posting.done(function(data) {
+    alert("data saved");
+  });
+  posting.fail(function() {
+   alert ("issue encountered")
+  });
+});
+</script>
+</body>
+</html>
